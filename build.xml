@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<target name="clean">
+		<delete dir="build" />
+		<delete dir="dist" />
+	</target>
+	<target name="build">
+		<exec executable="coffee">
+			<arg line="--output build" />
+			<arg line="--compile src" />
+		</exec>
+		<copy todir="build" filtering="true">
+			<fileset dir="src">
+				<exclude name="**/*.coffee" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="dist">
+		<zip basedir="build" destfile="dist/clear-cache-chrome-extension.zip" />
+	</target>
+</project>
